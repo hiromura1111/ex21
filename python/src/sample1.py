@@ -1,9 +1,13 @@
-import psycopg
+import matplotlib.pyplot as plt
+import numpy as np
 
-DATABASE_URL='postgresql://postgres:postgres@ex11-db:5432/postgres'
+# x軸:時刻
+x = np.arange(0, 100, 0.5)
 
-# dbに接続し、pg_userテーブルの内容を表示する
-with psycopg.connect(DATABASE_URL) as conn:
-    with conn.cursor() as cur:
-        cur.execute('SELECT * FROM pg_user')
-        print(cur.fetchall())
+# y軸:sin波
+Hz = 5.
+y = np.sin(2.0 * np.pi * (x * Hz) / 100)
+
+# グラフを描画
+plt.plot(x, y)
+plt.savefig('test.png')
